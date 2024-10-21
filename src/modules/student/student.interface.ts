@@ -49,13 +49,11 @@ export interface TStudent {
   isDeleted: boolean;
 }
 
-
 // For creating static
 
-export interface StudentModel extends Model<TStudent>{
-  isUserExists(id: string) : Promise<TStudent | null>
+export interface StudentModel extends Model<TStudent> {
+  isUserExists(id: string): Promise<TStudent | null>;
 }
-
 
 // For creating instance
 

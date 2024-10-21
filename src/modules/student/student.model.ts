@@ -41,16 +41,15 @@ const studentSchema = new Schema<TStudent, StudentModel>(
     },
     user: {
       type: Schema.Types.ObjectId,
-      required:[ true, "User Id is required"],
+      required: [true, 'User Id is required'],
       unique: true,
-      ref: 'User'
+      ref: 'User',
     },
     firstName: {
       type: String,
       required: [true, 'First name is required'],
       trim: true,
       maxlength: [15, 'First name must be less than 15 characters'],
-      
     },
     lastName: {
       type: String,
@@ -105,8 +104,6 @@ const studentSchema = new Schema<TStudent, StudentModel>(
     },
   },
 );
-
-
 
 // *using query middleware
 
