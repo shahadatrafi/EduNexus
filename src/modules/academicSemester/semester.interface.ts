@@ -1,5 +1,7 @@
 export type TSemesterName = 'Summer' | 'Fall' | 'Winter' | 'Autumn';
 
+export type TSemesterCode = '01' | '02' | '03' | '04';
+
 export type TMonths =
   | 'January'
   | 'February'
@@ -16,8 +18,8 @@ export type TMonths =
 
 export type TSemester = {
   name: TSemesterName;
-  year: Date;
-  code: '01' | '02' | '03';
+  year: string;
+  code: TSemesterCode;
   startMonth: TMonths;
   endMonth: TMonths;
 };
