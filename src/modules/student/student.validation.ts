@@ -19,33 +19,42 @@ const contactValidationSchema = z.object({
 });
 
 // Student Schema
-const studentValidationSchema = z.object({
-  id: z.string().trim().min(1, { message: 'ID is required' }),
-  firstName: z
-    .string()
-    .trim()
-    .min(1, { message: 'First name is required' })
-    .max(15, { message: 'First name must be less than 15 characters' })
-    .regex(/^[A-Z][a-zA-Z]*$/, { message: 'First name must be capitalized' }),
-  lastName: z
-    .string()
-    .trim()
-    .min(1, { message: 'Last name is required' })
-    .max(15, { message: 'Last name must be less than 15 characters' }),
-  dateOfBirth: z
-    .string()
-    .trim()
-    .min(1, { message: 'Date of birth is required' }),
-  address: addressValidationSchema,
-  contact: contactValidationSchema,
-  gender: z.enum(['male', 'female'], { required_error: 'Gender is required' }),
-  isActive: z.enum(['active', 'inactive']).default('active'),
-  emergencyContact: contactValidationSchema,
-  profilePic: z.string().trim().optional(),
-  bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'], {
-    required_error: 'Blood group is required',
+const createStudentValidationSchema = z.object({
+  body: z.object({
+    password: z.string().max(20),
+    student: z.object({
+      firstName: z
+        .string()
+        .trim()
+        .min(1, { message: 'First name is required' })
+        .max(15, { message: 'First name must be less than 15 characters' })
+        .regex(/^[A-Z][a-zA-Z]*$/, {
+          message: 'First name must be capitalized',
+        }),
+      lastName: z
+        .string()
+        .trim()
+        .min(1, { message: 'Last name is required' })
+        .max(15, { message: 'Last name must be less than 15 characters' }),
+      dateOfBirth: z
+        .string()
+        .trim()
+        .min(1, { message: 'Date of birth is required' }),
+      address: addressValidationSchema,
+      contact: contactValidationSchema,
+      gender: z.enum(['male', 'female'], {
+        required_error: 'Gender is required',
+      }),
+      isActive: z.enum(['active', 'inactive']).default('active'),
+      emergencyContact: contactValidationSchema,
+      profilePic: z.string().trim().optional(),
+      bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'], {
+        required_error: 'Blood group is required',
+      }),
+    }),
   }),
-  isDeleted: z.boolean(),
 });
 
-export default studentValidationSchema;
+export const studentValidationSchemas = {
+  createStudentValidationSchema,
+};
