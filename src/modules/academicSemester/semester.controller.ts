@@ -14,6 +14,20 @@ const createSemester = catchAsync(async (req, res) => {
   });
 });
 
+const findAllSemester = catchAsync(async(req, res)=>{
+
+  const result = await SemesterServices.findAllSemesterIntoDB();
+
+  sendResponse(res,{
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: "All semester fetched successfully",
+    data: result
+  })
+
+})
+
 export const SemesterControllers = {
   createSemester,
+  findAllSemester
 };

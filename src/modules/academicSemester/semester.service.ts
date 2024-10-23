@@ -14,6 +14,14 @@ const createSemesterIntoDB = async (semesterData: TSemester) => {
   return result;
 };
 
+const findAllSemesterIntoDB = async () => {
+
+  const result = await AcademicSemester.find();
+  return result
+
+}
+
 export const SemesterServices = {
   createSemesterIntoDB,
+  findAllSemesterIntoDB
 };
