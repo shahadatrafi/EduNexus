@@ -14,20 +14,31 @@ const createSemester = catchAsync(async (req, res) => {
   });
 });
 
-const findAllSemester = catchAsync(async(req, res)=>{
-
+const findAllSemester = catchAsync(async (req, res) => {
   const result = await SemesterServices.findAllSemesterIntoDB();
 
-  sendResponse(res,{
+  sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: "All semester fetched successfully",
-    data: result
-  })
+    message: 'All semester fetched successfully',
+    data: result,
+  });
+});
 
-})
+const findSingleSemester = catchAsync(async (req, res) => {
+  const { semesterId } = req.params;
+
+  const result = await SemesterServices.findSingleSemesterIntoDB(semesterId);
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Single semester fetched successfully',
+    data: result,
+  });
+});
 
 export const SemesterControllers = {
   createSemester,
-  findAllSemester
+  findAllSemester,
+  findSingleSemester,
 };

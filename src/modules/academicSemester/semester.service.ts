@@ -15,13 +15,17 @@ const createSemesterIntoDB = async (semesterData: TSemester) => {
 };
 
 const findAllSemesterIntoDB = async () => {
-
   const result = await AcademicSemester.find();
-  return result
+  return result;
+};
 
-}
+const findSingleSemesterIntoDB = async (id: string) => {
+  const result = await AcademicSemester.findOne({ _id: id });
+  return result;
+};
 
 export const SemesterServices = {
   createSemesterIntoDB,
-  findAllSemesterIntoDB
+  findAllSemesterIntoDB,
+  findSingleSemesterIntoDB,
 };
