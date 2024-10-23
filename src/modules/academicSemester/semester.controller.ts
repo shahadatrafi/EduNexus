@@ -37,8 +37,25 @@ const findSingleSemester = catchAsync(async (req, res) => {
   });
 });
 
+const updateSingleSemester = catchAsync(async (req, res) => {
+  const { semesterId } = req.params;
+  const newSemesterData = req.body;
+
+  const result = await SemesterServices.updateSingleSemesterIntoDB(
+    semesterId,
+    newSemesterData,
+  );
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Single semester Updated successfully',
+    data: result,
+  });
+});
+
 export const SemesterControllers = {
   createSemester,
   findAllSemester,
   findSingleSemester,
+  updateSingleSemester,
 };
