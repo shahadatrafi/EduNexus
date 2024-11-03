@@ -3,6 +3,8 @@ import { TStudent } from '../student/student.interface';
 import { User } from './user.model';
 import { TUser } from './user.interface';
 import { Student } from '../student/student.model';
+import { AcademicSemester } from '../academicSemester/semester.model';
+import { generateStudentId } from './user.utils';
 
 const createStudentIntoDB = async (password: string, studentData: TStudent) => {
   const userData: Partial<TUser> = {};
@@ -13,8 +15,13 @@ const createStudentIntoDB = async (password: string, studentData: TStudent) => {
   //set role
   userData.role = 'student';
 
+  // find semester info
+  const admissionSemester = await AcademicSemester.findById(
+    studentData.admissionSemester,
+  );
+
   // set a id manually
-  userData.id = '202311001';
+  userData.id = await generateStudentId(admissionSemester);
 
   // create a user
   const newUser = await User.create(userData);

@@ -45,6 +45,7 @@ export interface TStudent {
   // extraCurricularActivities?: string[];
   emergencyContact?: TContact;
   profilePic?: string;
+  admissionSemester: Types.ObjectId;
   bloodGroup?: TBloodGroup;
   isDeleted: boolean;
 }

@@ -83,6 +83,10 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: contactSchema,
       required: [true, 'Emergency contact is required'],
     },
+    admissionSemester: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicSemester',
+    },
     profilePic: { type: String, trim: true },
     bloodGroup: {
       type: String,

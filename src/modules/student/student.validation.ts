@@ -45,6 +45,7 @@ const createStudentValidationSchema = z.object({
       gender: z.enum(['male', 'female'], {
         required_error: 'Gender is required',
       }),
+      admissionSemester: z.string(),
       isActive: z.enum(['active', 'inactive']).default('active'),
       emergencyContact: contactValidationSchema,
       profilePic: z.string().trim().optional(),
